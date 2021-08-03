@@ -3,8 +3,14 @@ class FavoritesController < ApplicationController
     def create
     book = Book.find(params[:book_id])
     favorite = current_user.favorites.new(book_id: book.id)
-    favorite.save
-    redirect_to request.referer
+    if favorite.save
+        flash[:notice] = "Book was successfully created."
+        redirect_to request.referer
+    else
+        @user = current_user
+        flash[:notice] = "Book was errored."
+        render request.referer
+    end
     end
 
     def destroy

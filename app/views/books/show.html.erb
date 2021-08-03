@@ -102,6 +102,7 @@
 </div>
 
 <div class="new-comment">
+<%= flash[:notice] %>
 <%= form_with(model:[@book, @book_comment], local: true) do |f| %>
   <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに" %>
   <%= f.submit "送信" %>
