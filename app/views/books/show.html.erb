@@ -7,13 +7,12 @@
 </head>
 
 <body>
-  <% if @book.errors.any? %>
-  <%= @book.errors.count %>errors occurred
-  <% @book.errors.full_messages.each do |message| %>
+<% if @book_comment.errors.any? %>
+  <%= @book_comment.errors.count %>errors occurred
+  <% @book_comment.errors.full_messages.each do |message| %>
     <%= message %>
   <% end %>
 <% end %>
-
 <%= flash[:notice] %>
 
 
@@ -102,7 +101,6 @@
 </div>
 
 <div class="new-comment">
-<%= flash[:notice] %>
 <%= form_with(model:[@book, @book_comment], local: true) do |f| %>
   <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに" %>
   <%= f.submit "送信" %>

@@ -14,7 +14,6 @@ class BooksController < ApplicationController
      else
       @books = Book.all
       @user = current_user
-      flash[:notice] = "Book was errored."
       render "books/index"
      end
   end
@@ -22,7 +21,7 @@ class BooksController < ApplicationController
   def index
      @books = Book.all
      @user = current_user
-     @book_new = Book.new
+     @book = Book.new
   end
 
   def show
