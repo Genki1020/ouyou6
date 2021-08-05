@@ -3,6 +3,18 @@
 <div class="row">
 <div class="col-md-3">
 <%= render 'users/list', user: @user %>
+<div class="row">
+<div class="m-1">
+<% unless @user == current_user %>
+  <% if current_user.following?(@user) %>
+    <td><%= link_to 'フォロー外す', unfollow_path(@user.id), method: :POST,class:"btn btn-sm btn-success edit_book_7295"%></td>
+  <% else %>
+    <td><%= link_to 'フォローする', follow_path(@user.id), method: :POST ,class:"btn btn-sm btn-success edit_book_7295"%></td>
+  <% end %>
+<% end %>
+</div>
+</div>
+<br>
 <%= render 'books/list', book: @book %>
 </div>
 
