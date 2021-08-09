@@ -6,13 +6,12 @@ class BookCommentsController < ApplicationController
     @book_comment.book_id = @book.id
   if @book_comment.save
     flash[:notice] = "Comment was successfully created."
-    redirect_to request.referer
+
   else
     @user = current_user
     flash[:notice] = "Comment was errored."
-    render "books/show"
   end
- end
+  end
 
   def destroy
     book = Book.find(params[:book_id])
@@ -23,6 +22,6 @@ class BookCommentsController < ApplicationController
   private
 
   def book_comment_params
-    params.require(:book_comment).permit(:comment)
+    params.require(:book_comment).permit(:comment, :book_id, :user_id)
   end
 end
